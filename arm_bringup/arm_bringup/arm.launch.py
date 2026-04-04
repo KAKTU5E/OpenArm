@@ -13,7 +13,6 @@ def generate_launch_description():
     pkg_arm_config = FindPackageShare('arm_config')
 
     xacro_path = PathJoinSubstitution(pkg_arm_description, 'urdf', 'OpenArmVKillian.xacro')
-    arm_controllers = PathJoinSubstitution([pkg_arm_config, 'config', 'arm_controllers.yaml'])
     joint_traj_config = PathJoinSubstitution([pkg_arm_config, 'config', 'joint_traj_config.yaml'])
     
     robot_description_content = Command(['xacro', xacro_path])
@@ -31,7 +30,7 @@ def generate_launch_description():
     control_node = Node(
         package = 'controller_manager',
         executable = 'ros2_control_node',
-        parameters = [arm_controllers, joint_traj_config, robot_description],
+        parameters = [joint_traj_config, robot_description],
         output = 'both', 
     )
 
