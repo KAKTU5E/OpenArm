@@ -26,9 +26,11 @@ if(BUILD_TESTING)
 endif()
 
 install(DIRECTORY 
+  config
   launch
   urdf
   meshes
+  meshes_2
   rviz
   DESTINATION share/${PROJECT_NAME}/
   

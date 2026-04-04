@@ -9,7 +9,7 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     arm_description_path = FindPackageShare('arm_description')
-    default_model_path = PathJoinSubstitution(['urdf', 'OpenArm.urdf'])
+    default_model_path = PathJoinSubstitution(['urdf', 'OpenArmVKillian.urdf'])
     #default_model_path = PathJoinSubstitution(['LECTER_Full_Assembly', 'urdf', 'LECTER_Full_Assembly_final.urdf'])
     default_rviz_config_path = PathJoinSubstitution([arm_description_path, 'rviz', 'urdf.rviz'])
 

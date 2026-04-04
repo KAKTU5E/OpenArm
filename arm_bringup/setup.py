@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'arm_config'
+package_name = 'arm_bringup'
 
 setup(
     name=package_name,
@@ -24,7 +24,6 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'Arm_node = arm_config.Arm_node:main'
         ],
     },
 )
