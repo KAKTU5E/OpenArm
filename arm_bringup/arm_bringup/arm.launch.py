@@ -10,30 +10,29 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
 
     pkg_arm_description = FindPackageShare('arm_description')
-    pkg_arm_bringup = FindPackageShare('arm_bringup')
     pkg_arm_config = FindPackageShare('arm_config')
 
-    urdf_path = Command([ 'xacro', PathJoinSubstitution([pkg_arm_description, 'urdf', 'OpenArmVKillian.xacro'])])
+    xacro_path = PathJoinSubstitution(pkg_arm_description, 'urdf', 'OpenArmVKillian.xacro')
     arm_controllers = PathJoinSubstitution([pkg_arm_config, 'config', 'arm_controllers.yaml'])
-    joint_traj_config = PathJoinSubstitution([pkg_arm_config, 'config', 'joint_traj_config'])
+    joint_traj_config = PathJoinSubstitution([pkg_arm_config, 'config', 'joint_traj_config.yaml'])
     
-    description_parameter = ParameterValue(urdf_path, value_type=str)
+    robot_description_content = Command(['xacro', xacro_path])
 
-    robot_description = {'robot_description': description_parameter}
+    robot_description = {'robot_description': ParameterValue(robot_description_content, value_type=str)}
 
     robot_state_pub = Node(
         package = 'robot_state_publisher',
         executable = 'robot_state_publisher',
         output = 'screen',
-        parameters = robot_description,
+        parameters = [robot_description],
         namespace = 'controller_manager',
     )
 
     control_node = Node(
         package = 'controller_manager',
         executable = 'ros2_control_node',
-        parameters = arm_controllers,
-        output = 'both',
+        parameters = [arm_controllers, joint_traj_config, robot_description],
+        output = 'both', 
     )
 
     joint_traj_controller_spawner = Node(
