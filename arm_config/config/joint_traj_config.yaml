@@ -1,16 +1,19 @@
 controller_manager:
-  update_rate: 100
   ros__parameters:
-    joint_trajectory_controller:
+    update_rate: 100
+    
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+    
+    arm_controller:
       type: "joint_trajectory_controller/JointTrajectoryController"
 
-joint_trajectory_controller:
+arm_controller:
    ros__parameters:
-      type: "joint_trajectory_controller/JointTrajectoryController"
       joints:
-        - "Cycloidal_Simplified_for_FEA-1_Revolute-28"
-        - "Cycloidal_Simplified_for_FEA-2_Revolute-30"
-        - "Secondary-Joint-Cartilage_Revolute-11"
+        - "joint1"
+        - "joint2"
+        - "joint3"
 
       command_interfaces:
         - position
@@ -27,14 +30,14 @@ joint_trajectory_controller:
       stopped_velocity_tolerance: 0.01
       goal_time: 0.0
       
-      Cycloidal_Simplified_for_FEA-1_Revolute-28:
+      joint1:
         trajectory: 0.05
         goal: 0.03      
 
-      Cycloidal_Simplified_for_FEA-2_Revolute-30:
+      joint2:
         trajectory: 0.05
         goal: 0.03
 
-      Secondary-Joint-Cartilage_Revolute-11:
+      joint3:
         trajectory: 0.05
         goal: 0.03
