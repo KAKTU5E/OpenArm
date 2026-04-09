@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot name="Amigo_Arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="hardware_plugin" default="cubemars_hardware/CubeMarsSystemHardware"/>
+    <xacro:arg name="can_interface" default="can0"/>
 
     <xacro:include filename="AmigoArmControl.xacro"/>
 
@@ -34,6 +36,8 @@
         <limit lower="-3.14159" upper="3.14159" effort="100" velocity="10"/>
     </joint>
         
-    <xacro:AmigoArmControl/>
+    <xacro:AmigoArmControl
+        hardware_plugin="$(arg hardware_plugin)"
+        can_interface="$(arg can_interface)"/>
 
  </robot>

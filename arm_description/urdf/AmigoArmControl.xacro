@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <robot name="Amigo_Arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="AmigoArmControl">
+  <xacro:macro name="AmigoArmControl" params="hardware_plugin:='cubemars_hardware/CubeMarsSystemHardware' can_interface:='can0'">
 
     <!--4 DOF Arm-->
     <ros2_control name="arm_4DOF" type="system">
       <hardware>
-        <plugin>cubemars_hardware/CubeMarsSystemHardware</plugin>
-        <param name="can_interface">can0</param>
+        <plugin>${hardware_plugin}</plugin>
+        <param name="can_interface">${can_interface}</param>
       </hardware>
       <joint name="joint1">
         <param name="can_id">1</param>
