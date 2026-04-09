@@ -6,7 +6,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration("use_sim_time", default='true')
+    use_sim_time = LaunchConfiguration("use_sim_time", default='false')
     hardware_plugin = LaunchConfiguration("hardware_plugin")
     can_interface = LaunchConfiguration("can_interface")
 
