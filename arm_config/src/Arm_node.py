@@ -12,6 +12,10 @@ class Arm_Node(Node):
         self.cli = self.create_client(ListControllers, '/controller_manager/list_controllers')
         self.send_request()
 
+        while True:
+            self.get_logger(f'THE WORKSPACE IS WORKING AS INTENDED')
+
+        
     def send_request(self):
         req = ListControllers.Request()
         self.future = self.cli.call_async(req)
