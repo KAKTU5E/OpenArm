@@ -27,17 +27,17 @@ arm_controller:
       allow_partial_joints_goal: false
       interpolate_from_desired_state: true
       constraints:
-      stopped_velocity_tolerance: 0.01
-      goal_time: 0.0
-      
-      joint1:
-        trajectory: 0.05
-        goal: 0.03      
+        stopped_velocity_tolerance: 0.01
+        goal_time: 0.0
+        
+        joint1:
+          trajectory: 0.05
+          goal: 0.03      
 
-      joint2:
-        trajectory: 0.05
-        goal: 0.03
+        joint2:
+          trajectory: 0.05
+          goal: 0.03
 
-      joint3:
-        trajectory: 0.05
-        goal: 0.03
+        joint3:
+          trajectory: 0.05
+          goal: 0.03

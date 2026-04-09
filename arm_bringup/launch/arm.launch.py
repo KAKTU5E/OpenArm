@@ -3,8 +3,9 @@ from launch.substitutions import PathJoinSubstitution, LaunchConfiguration, Comm
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
+
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration("use_sim_time")
+    use_sim_time = LaunchConfiguration("use_sim_time", default='true')
 
     pkg_arm_description = FindPackageShare('arm_description')
     pkg_arm_config = FindPackageShare('arm_config')
@@ -12,7 +13,7 @@ def generate_launch_description():
     xacro_path = PathJoinSubstitution([
         pkg_arm_description, 
         'urdf', 
-        'AmigoArmMinimal.urdf.xacro'
+        'AmigoArmMinimal.urdf'
     ])
     
     joint_traj_config = PathJoinSubstitution([
